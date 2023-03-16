@@ -7,16 +7,27 @@ public class InputHandler : MonoBehaviour
     public float moveAmount;
     public float mouseX;
     public float mouseY;
-    public bool bInput;
+    
+    public bool shiftInput;
+    public bool ctrlInput;
     public bool rollFlag;
     public bool sprintFlag;
-    public float rollInputTimer;
+    public bool rbInput;
+    public bool rtInput;
 
     private PlayerControls _inputActions;
+    private PlayerAttacker _playerAttacker;
     private CameraHandler _cameraHandler;
+    private PlayerInventory _playerInventory;
     
     private Vector2 _movementInput;
     private Vector2 _cameraInput;
+
+    private void Awake()
+    {
+        _playerAttacker = GetComponent<PlayerAttacker>();
+        _playerInventory = GetComponent<PlayerInventory>();
+    }
 
     public void OnEnable()
     {
@@ -40,7 +51,8 @@ public class InputHandler : MonoBehaviour
     public void TickInput(float delta)
     {
         MoveInput(delta);
-        HandleRollingInput(delta);
+        HandleRollingAndSprintingInput(delta);
+        HandleAttackInput(delta);
     }
 
     private void MoveInput(float delta)
@@ -52,23 +64,35 @@ public class InputHandler : MonoBehaviour
         mouseY = _cameraInput.y;
     }
 
-    private void HandleRollingInput(float delta)
+    private void HandleRollingAndSprintingInput(float delta)
     {
-        bInput = _inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
-        if (bInput)
-        {
-            rollInputTimer += delta;
-            sprintFlag = true;
-        }
-        else
-        {
-            if (rollInputTimer > 0 && rollInputTimer < 0.5f)
-            {
-                sprintFlag = false;
-                rollFlag = true;
-            }
+        ctrlInput = _inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+        shiftInput = _inputActions.PlayerActions.Sprint.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
 
-            rollInputTimer = 0;
+        rollFlag = ctrlInput;
+        sprintFlag = shiftInput;
+    }
+
+    private void HandleAttackInput(float delta)
+    {
+        _inputActions.PlayerActions.RB.performed += _ => rbInput = true;
+        _inputActions.PlayerActions.RT.performed += _ => rtInput = true;
+
+        if (rbInput)
+        {
+            
+            if (_playerInventory != null)
+            {
+                _playerAttacker.HandleLightAttack(_playerInventory.rightWeapon);
+            }
+            else
+            {
+                Debug.Log("_playerInventory is null");
+            }
+        }
+        if (rtInput)
+        {
+            _playerAttacker.HandleHeaveAttack(_playerInventory.rightWeapon);
         }
     }
 }

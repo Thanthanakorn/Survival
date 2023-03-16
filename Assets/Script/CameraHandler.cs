@@ -64,12 +64,12 @@ public class CameraHandler : MonoBehaviour
     private void HandleCameraCollisions(float delta)
     {
         var targetPosition = _defaultPosition;
-        var position = cameraTransform.position;
-        var direction = position - position;
+        RaycastHit hit;
+        var direction = cameraTransform.position - cameraPivotTransform.position;
         direction.Normalize();
 
         if (Physics.SphereCast
-            (cameraPivotTransform.position, cameraSphereRadius, direction, out var hit, Mathf.Abs(targetPosition)
+            (cameraPivotTransform.position, cameraSphereRadius, direction, out hit, Mathf.Abs(targetPosition)
                 , _ignoreLayers))
         {
             float dis = Vector3.Distance(cameraPivotTransform.position, hit.point);
