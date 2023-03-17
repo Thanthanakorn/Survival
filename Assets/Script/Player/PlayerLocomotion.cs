@@ -7,6 +7,7 @@ public class PlayerLocomotion : MonoBehaviour
     private InputHandler _inputHandler;
     private PlayerManager _playerManager;
     private PlayerStats _playerStats;
+    private Animator _anim;
     public Vector3 moveDirection;
     
 
@@ -31,8 +32,7 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private float rollingDistance = 3f;
     [SerializeField] private float stepBackDistance = 1f;
     [SerializeField] private float stepBackSpeed = 5f;
-
-
+    
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -80,6 +80,10 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleMovement(float delta)
     {
+        if (_playerManager.isAttacking)
+        {
+            return;
+        }
         if (_inputHandler.rollFlag)
             return;
 
@@ -133,11 +137,13 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleRollingAndSprinting(float delta)
     {
+        
         if (animatorHandler.anim.GetBool(IsInteracting))
             return;
 
         if (_inputHandler.rollFlag)
         {
+            
             moveDirection = _cameraObject.forward * _inputHandler.vertical;
             moveDirection += _cameraObject.right * _inputHandler.horizontal;
 
@@ -165,8 +171,10 @@ public class PlayerLocomotion : MonoBehaviour
                 StartCoroutine(MoveOverSpeed(gameObject, targetPosition, stepBackSpeed));
             }
         }
+
+        
     }
-    
+
     IEnumerator MoveOverSpeed(GameObject objectToMove, Vector3 end, float speed)
     {
         float startTime = Time.time;
@@ -265,6 +273,10 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
     
-
+    public void ResetVelocity()
+    {
+        rigidbody.velocity = Vector3.zero;
+    }
+    
     #endregion
 }

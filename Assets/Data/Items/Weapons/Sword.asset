@@ -14,8 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Sword
+  standPose: 
+  lightAttack1: 
+  lightAttack2: 
+  lightAttack3: 
+  heavyAttack1: 
+  heavyAttack2: 
+  heavyAttack3: 
   modelPrefab: {fileID: 6936717022187651933, guid: 8f59a67770c0141709b3fa3abdffb2c1,
     type: 3}
   isUnarmed: 0
   ohLightAttack1: Light Attack 1
+  ohLightAttack2: Light Attack 2
+  ohLightAttack3: Light Attack 3
   ohHeavyAttack1: Hit with handle
+  ohHeavyAttack2: Spin attack
+  ohHeavyAttack3: Jump attack
+  baseStamina: 20
+  lightAttackMultiplier: 1
+  heavyAttackMultiplier: 2

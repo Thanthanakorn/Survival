@@ -25,7 +25,7 @@ public class EnemyStats : MonoBehaviour
     {
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        //healthBar.SetMaxHealth(maxHealth);
     }
 
     private int SetMaxHealthFromHealthLevel()

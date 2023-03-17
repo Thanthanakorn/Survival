@@ -2,13 +2,22 @@ using UnityEngine;
 
 public class WeaponSlotManager : MonoBehaviour
 {
+    public WeaponItem attackingWeapon;
+    
     private WeaponHolderSlot _leftHandSlot;
     private WeaponHolderSlot _rightHandSlot;
 
     private DamageCollider _leftHandDamageCollider;
     private DamageCollider _rightHandDamageCollider;
+
+    private Animator _animator;
+
+    private PlayerStats _playerStats;
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
+        _playerStats = GetComponentInParent<PlayerStats>();
+        
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
         {
@@ -28,11 +37,24 @@ public class WeaponSlotManager : MonoBehaviour
         {
             _leftHandSlot.LoadWeaponModel(weaponItem);
             LoadLeftWeaponDamageCollider();
+            
+            if (weaponItem != null)
+            {
+                _animator.CrossFade(weaponItem.standPose, 0.2f);
+            }
+            else 
+                _animator.CrossFade("Left Arm Empty", 0.2f);
         }
         else
         {
             _rightHandSlot.LoadWeaponModel(weaponItem);
             LoadRightWeaponDamageCollider();
+            if (weaponItem != null)
+            {
+                _animator.CrossFade(weaponItem.standPose, 0.2f);
+            }
+            else 
+                _animator.CrossFade("Left Arm Empty", 0.2f);
         }
     }
 
@@ -69,5 +91,17 @@ public class WeaponSlotManager : MonoBehaviour
         _leftHandDamageCollider.DisableDamageCollider();
     }
     
+    #endregion
+    
+    #region Handle Weapon's Stamina Drainage
+    public void DrainStaminaLightAttack()
+    {
+        _playerStats.TakeStaminaDamage(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.lightAttackMultiplier));
+    }
+    
+    public void DrainStaminaHeavyAttack()
+    {
+        _playerStats.TakeStaminaDamage(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
+    }
     #endregion
 }

@@ -8,7 +8,7 @@ public class WeaponHolderSlot : MonoBehaviour
 
     public GameObject currentWeaponModel;
 
-    public void UnloadWeapon()
+    private void UnloadWeapon()
     {
         if (currentWeaponModel != null)
         {
@@ -16,7 +16,7 @@ public class WeaponHolderSlot : MonoBehaviour
         }
     }
 
-    public void UnloadWeaponAndDestroy()
+    private void UnloadWeaponAndDestroy()
     {
         if (currentWeaponModel != null)
         {

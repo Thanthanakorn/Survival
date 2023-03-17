@@ -7,7 +7,9 @@ public class PlayerManager : MonoBehaviour
     private CameraHandler _cameraHandler;
     private PlayerLocomotion _playerLocomotion;
     
+    
     public bool isInteracting;
+    public bool isAttacking;
     
     [Header("Player Flags")]
     public bool isSprinting;
@@ -16,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     public bool canDoCombo;
 
     private static readonly int IsInteracting = Animator.StringToHash("isInteracting");
+    private static readonly int IsAttacking = Animator.StringToHash("isAttacking");
     private static readonly int CanDoCombo = Animator.StringToHash("canDoCombo");
 
     private void Awake()
@@ -35,8 +38,8 @@ public class PlayerManager : MonoBehaviour
         float delta = Time.deltaTime;
         
         isInteracting = _anim.GetBool(IsInteracting);
+        isAttacking = _anim.GetBool(IsAttacking);
         canDoCombo = _anim.GetBool(CanDoCombo);
-        
         _inputHandler.TickInput(delta);
         _playerLocomotion.HandleMovement(delta);
         _playerLocomotion.HandleRollingAndSprinting(delta);

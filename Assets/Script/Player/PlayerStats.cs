@@ -8,12 +8,18 @@ public class PlayerStats : MonoBehaviour
     public int currentHealth;
     public bool isDead;
 
-    public HealthBar healthBar;
+    public int staminaLevel = 10;
+    public int maxStamina;
+    public int currentStamina;
     
+    public HealthBar healthBar;
+    public StaminaBar staminaBar;
     private AnimatorHandler _animatorHandler;
 
     private void Awake()
     {
+        healthBar = FindObjectOfType<HealthBar>();
+        staminaBar = FindObjectOfType<StaminaBar>();
         _animatorHandler = GetComponentInChildren<AnimatorHandler>();
         _rigidbody = GetComponent<Rigidbody>();
         isDead = false;
@@ -24,12 +30,22 @@ public class PlayerStats : MonoBehaviour
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        maxStamina = SetMaxStaminaFromStaminaLevel();
+        currentStamina = maxStamina;
+        staminaBar.SetMaxStamina(maxStamina);
     }
 
     private int SetMaxHealthFromHealthLevel()
     {
         maxHealth = healthLevel * 10;
         return maxHealth;
+    }
+
+    private int SetMaxStaminaFromStaminaLevel()
+    {
+        maxStamina = staminaLevel * 10;
+        return maxStamina;
     }
 
     public void TakeDamage(int damage)
@@ -46,5 +62,11 @@ public class PlayerStats : MonoBehaviour
             constraints |= RigidbodyConstraints.FreezePositionZ; // Freeze position along the z-axis
             _rigidbody.constraints = constraints;
         }
+    }
+
+    public void TakeStaminaDamage(int damage)
+    {
+        currentStamina -= damage;
+        staminaBar.SetCurrentStamina(currentStamina);
     }
 }

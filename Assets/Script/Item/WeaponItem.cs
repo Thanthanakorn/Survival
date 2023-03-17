@@ -15,4 +15,9 @@ public class WeaponItem : Item
    public string ohHeavyAttack2;
    public string ohHeavyAttack3;
 
+   [Header("Stamina Costs")] 
+   public int baseStamina = 0;
+   public float lightAttackMultiplier;
+   public float heavyAttackMultiplier;
+
 }
