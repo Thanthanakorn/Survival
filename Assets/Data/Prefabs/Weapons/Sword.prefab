@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 6155176233639094945}
   - component: {fileID: 9060322640557642731}
   - component: {fileID: 5519444265899210623}
+  - component: {fileID: 5617702618488169326}
+  - component: {fileID: 5846974548436763796}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -115,6 +117,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5617702618488169326
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160888474918336922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.787479, y: 26.735771, z: 3}
+  m_Center: {x: -0.38667795, y: 14.632248, z: 0.49999997}
+--- !u!114 &5846974548436763796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160888474918336922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ac36c7229134e8d9833ed32deb4276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponDamage: 25
 --- !u!1 &6936717022187651933
 GameObject:
   m_ObjectHideFlags: 0

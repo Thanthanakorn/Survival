@@ -23,15 +23,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42563324585512378}
-  m_LocalRotation: {x: -0.17077965, y: 0.2964269, z: -0.72608554, w: 0.59646064}
-  m_LocalPosition: {x: -2.04, y: 0.91, z: 0.89}
+  m_LocalRotation: {x: -0.10895371, y: 0.3242891, z: -0.594166, w: 0.7279647}
+  m_LocalPosition: {x: -2, y: -0.55, z: 0.66}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7837949642662586009}
   m_Father: {fileID: 7256928057380870081}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 13.105, y: 38.149, z: -96.647}
+  m_LocalEulerAnglesHint: {x: 13.105, y: 38.149, z: -73.894}
 --- !u!1 &1329638115992909218
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 7837949642662586009}
   - component: {fileID: 4905214874028580819}
   - component: {fileID: 8446334875024014151}
+  - component: {fileID: 8577543201644806359}
+  - component: {fileID: 6275253514006561314}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -115,6 +117,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8577543201644806359
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329638115992909218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.000007, y: 19.000053, z: 3.2444968}
+  m_Center: {x: 0.000000059604645, y: 10.50001, z: -0.90462637}
+--- !u!114 &6275253514006561314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329638115992909218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ac36c7229134e8d9833ed32deb4276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponDamage: 25
 --- !u!1 &8069915285210058107
 GameObject:
   m_ObjectHideFlags: 0

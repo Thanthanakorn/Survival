@@ -7,11 +7,12 @@ public class InputHandler : MonoBehaviour
     public float moveAmount;
     public float mouseX;
     public float mouseY;
-    
+
     public bool shiftInput;
     public bool ctrlInput;
     public bool rollFlag;
     public bool sprintFlag;
+    public bool comboFLag;
     public bool rbInput;
     public bool rtInput;
 
@@ -19,7 +20,8 @@ public class InputHandler : MonoBehaviour
     private PlayerAttacker _playerAttacker;
     private CameraHandler _cameraHandler;
     private PlayerInventory _playerInventory;
-    
+    private PlayerManager _playerManager;
+
     private Vector2 _movementInput;
     private Vector2 _cameraInput;
 
@@ -27,6 +29,7 @@ public class InputHandler : MonoBehaviour
     {
         _playerAttacker = GetComponent<PlayerAttacker>();
         _playerInventory = GetComponent<PlayerInventory>();
+        _playerManager = GetComponent<PlayerManager>();
     }
 
     public void OnEnable()
@@ -80,19 +83,31 @@ public class InputHandler : MonoBehaviour
 
         if (rbInput)
         {
-            
-            if (_playerInventory != null)
+            if (_playerManager.canDoCombo)
             {
-                _playerAttacker.HandleLightAttack(_playerInventory.rightWeapon);
+                comboFLag = true;
+                _playerAttacker.HandleWeaponCombo(_playerInventory.rightWeapon);
+                comboFLag = false; 
             }
             else
-            {
-                Debug.Log("_playerInventory is null");
+            { 
+                _playerAttacker.HandleLightAttack(_playerInventory.rightWeapon);
             }
+            
         }
+
         if (rtInput)
         {
-            _playerAttacker.HandleHeaveAttack(_playerInventory.rightWeapon);
+            if (_playerManager.canDoCombo)
+            {
+                comboFLag = true;
+                _playerAttacker.HandleWeaponCombo(_playerInventory.rightWeapon);
+                comboFLag = false; 
+            }
+            else
+            { 
+                _playerAttacker.HandleHeavyAttack(_playerInventory.rightWeapon);
+            }
         }
     }
 }

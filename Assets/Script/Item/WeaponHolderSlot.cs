@@ -44,5 +44,6 @@ public class WeaponHolderSlot : MonoBehaviour
         }
 
         currentWeaponModel = model;
+        
     }
 }

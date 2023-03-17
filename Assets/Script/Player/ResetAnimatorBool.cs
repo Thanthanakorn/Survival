@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class ResetAnimatorBool : StateMachineBehaviour
 {
-    private static readonly int IsInteracting = Animator.StringToHash("isInteracting");
-
     public string targetBool;
     public bool status;
 
