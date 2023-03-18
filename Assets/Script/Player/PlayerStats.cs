@@ -61,6 +61,7 @@ public class PlayerStats : MonoBehaviour
             constraints |= RigidbodyConstraints.FreezePositionX; // Freeze position along the y-axis
             constraints |= RigidbodyConstraints.FreezePositionZ; // Freeze position along the z-axis
             _rigidbody.constraints = constraints;
+            _animatorHandler.StopRotation();
         }
     }
 

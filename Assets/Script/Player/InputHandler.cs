@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class InputHandler : MonoBehaviour
     public bool comboFlag;
     public bool rbInput;
     public bool rtInput;
+    public bool jumpInput;
 
     private PlayerControls _inputActions;
     private PlayerAttacker _playerAttacker;
@@ -50,12 +52,12 @@ public class InputHandler : MonoBehaviour
         _inputActions.Disable();
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
     public void TickInput(float delta)
     {
         MoveInput(delta);
         HandleRollingAndSprintingInput(delta);
         HandleAttackInput(delta);
+        HandleJumpInput();
     }
 
     private void MoveInput(float delta)
@@ -112,5 +114,10 @@ public class InputHandler : MonoBehaviour
                 _playerAttacker.HandleHeavyAttack(_playerInventory.rightWeapon);
             }
         }
+    }
+    
+    private void HandleJumpInput()
+    {
+        _inputActions.PlayerActions.Jump.performed += i => jumpInput = true;
     }
 }

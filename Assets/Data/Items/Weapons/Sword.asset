@@ -27,9 +27,9 @@ MonoBehaviour:
   ohLightAttack1: Light Attack 1
   ohLightAttack2: Light Attack 2
   ohLightAttack3: Light Attack 3
-  ohHeavyAttack1: Hit with handle
-  ohHeavyAttack2: Spin attack
-  ohHeavyAttack3: Jump attack
+  ohHeavyAttack1: Heavy Attack 1
+  ohHeavyAttack2: Heavy Attack 2
+  ohHeavyAttack3: Heavy Attack 3
   baseStamina: 20
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2
